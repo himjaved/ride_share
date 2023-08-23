@@ -3,6 +3,10 @@ form {
   margin: 0 auto;
 }
 
-h1 {
-  color: blue;
+label {
+  margin: 5px;
+  font-weight: bold;
+}
+input {
+  margin: 10px;
 }

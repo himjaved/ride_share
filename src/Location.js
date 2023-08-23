@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./location.css";
 
 export default function Location() {
+  let [lat, setLat] = useState(null);
+  let [lon, setLon] = useState(null);
+
   let [pickUp, setPickUp] = useState("");
   let [destination, setDestination] = useState("");
   let [message, setMessage] = useState("");
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLat(position.coords.latitude);
+      setLon(position.coords.longitude);
+    });
+  });
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -40,7 +50,10 @@ export default function Location() {
         />
         <input type="submit" value="Start Trip" />
       </form>
-      <p>{message}</p>
+      <h3>{message}</h3>
+      <p>
+        Your latitude is {lat} and Longitude is {lon}
+      </p>
     </div>
   );
 }
